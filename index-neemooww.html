@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#fff0f4">
+<title>for Neeeemoooww bestiyyyy ♡</title>
+<style>
+  :root{
+    --pink:#f4a8bd; --pink2:#ffd6e2; --deep:#9b4967; --cream:#fff8f1;
+    --ink:#503744; --muted:#896b78; --white:#fffdfb; --line:#f1d6df;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; color:var(--ink); font-family:"Trebuchet MS",system-ui,-apple-system,sans-serif;
+    background:radial-gradient(circle at 10% 5%,#ffe2eb 0,transparent 28%),
+               radial-gradient(circle at 90% 25%,#fff0d9 0,transparent 25%),var(--cream);
+    overflow-x:hidden;
+  }
+  button{font:inherit;cursor:pointer}
+  .music-toggle{
+    position:fixed;z-index:20;right:14px;top:14px;border:1px solid #edc3d1;
+    border-radius:999px;background:#fffafcdd;color:var(--deep);padding:10px 14px;
+    box-shadow:0 8px 25px #b55c7d1a;backdrop-filter:blur(8px);font-size:.88rem;
+  }
+  .music-toggle:hover,.btn:hover{transform:translateY(-2px)}
+  .music-toggle:active,.btn:active{transform:scale(.98)}
+  .music-note{font-size:.8rem;color:var(--muted);margin-top:8px}
+  .floating{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+  .floaty{position:absolute;bottom:-50px;opacity:.45;animation:rise linear infinite}
+  @keyframes rise{to{transform:translateY(-115vh) rotate(25deg);opacity:0}}
+  .wrap{width:min(900px,92%);margin:auto;position:relative;z-index:1}
+  .hero{min-height:100svh;display:grid;place-items:center;padding:78px 0 45px;text-align:center}
+  .hero-card{
+    width:min(620px,100%);padding:clamp(24px,6vw,52px) clamp(18px,5vw,46px);
+    background:#fffdf9eF;border:2px solid #f7d4df;border-radius:32px;
+    box-shadow:0 20px 70px #9b49671a;position:relative;
+  }
+  .hero-card:before,.hero-card:after{content:"♡";position:absolute;color:#e88eac;font-size:32px}
+  .hero-card:before{top:14px;left:18px;transform:rotate(-15deg)}
+  .hero-card:after{bottom:12px;right:20px;transform:rotate(12deg)}
+  .eyebrow{display:inline-block;background:#fff0f5;border:1px dashed #e9a8bd;color:var(--deep);
+    padding:7px 13px;border-radius:999px;font-size:.8rem;letter-spacing:.04em}
+  h1{font-size:clamp(2.1rem,8vw,4.2rem);line-height:1.05;margin:22px 0 14px;letter-spacing:-.05em}
+  .script{color:var(--deep)}
+  .hero p{max-width:480px;margin:0 auto;color:var(--muted);line-height:1.8}
+  .envelope-stage{height:155px;display:grid;place-items:center;margin:22px auto 12px}
+  .envelope{width:148px;height:100px;position:relative;border:0;background:transparent;animation:bob 2.6s ease-in-out infinite}
+  .env-body{position:absolute;inset:20px 0 0;background:#f7b6ca;border-radius:8px;box-shadow:0 9px 0 #e797b1}
+  .env-front{position:absolute;bottom:0;left:0;width:0;height:0;border-left:74px solid #fbd1de;border-right:74px solid #fbd1de;border-top:52px solid transparent;border-radius:0 0 8px 8px}
+  .env-flap{position:absolute;top:20px;left:0;width:0;height:0;border-left:74px solid transparent;border-right:74px solid transparent;border-top:54px solid #ec9eb8;transform-origin:top;transition:transform .65s ease;z-index:3}
+  .seal{position:absolute;z-index:4;top:47px;left:58px;font-size:29px;transition:opacity .3s}
+  .envelope.open .env-flap{transform:rotateX(180deg);z-index:0}
+  .envelope.open .seal{opacity:0}
+  @keyframes bob{50%{transform:translateY(-8px) rotate(1deg)}}
+  .btn{border:0;border-radius:999px;padding:13px 21px;font-weight:800;transition:transform .2s,box-shadow .2s;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+  .btn-primary{background:var(--deep);color:white;box-shadow:0 7px 0 #71334c}
+  .btn-soft{background:#fff0f5;color:var(--deep);border:1px solid #f1c7d5}
+  .btn-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:20px}
+  .tiny{font-size:.82rem;color:#a1828e;margin-top:18px}
+  section.story-section{padding:70px 0}
+  .section-heading{text-align:center;margin-bottom:30px}
+  .section-heading .mini{color:var(--deep);font-size:.85rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+  h2{font-size:clamp(1.8rem,5vw,2.7rem);line-height:1.12;margin:10px 0}
+  .section-heading p{color:var(--muted);line-height:1.75;max-width:570px;margin:0 auto}
+  .timeline{display:grid;gap:18px;max-width:700px;margin:auto}
+  .memory{
+    background:#fffdfb;border:1px solid var(--line);border-radius:22px;padding:22px;
+    display:grid;grid-template-columns:56px 1fr;gap:15px;box-shadow:0 10px 28px #9b49670b;
+    opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease;
+  }
+  .memory.visible{opacity:1;transform:translateY(0)}
+  .memory-icon{width:54px;height:54px;border-radius:18px;background:#fff0f5;display:grid;place-items:center;font-size:1.7rem}
+  .memory h3{margin:2px 0 7px;font-size:1.05rem}
+  .memory p{margin:0;color:var(--muted);line-height:1.75;font-size:.96rem}
+  .memory .tag{display:inline-block;font-size:.72rem;background:#fff4e6;color:#9b6a48;border-radius:999px;padding:4px 9px;margin-bottom:8px}
+  .note{
+    max-width:700px;margin:28px auto 0;padding:23px 24px;background:#fff0f5;border:1px dashed #e7a3ba;
+    border-radius:20px;text-align:center;line-height:1.8;color:#805568;transform:rotate(-.5deg)
+  }
+  .letter-wrap{max-width:700px;margin:auto}
+  .letter{
+    background:#fffdfb;border:1px solid #f0d5dd;border-radius:25px;padding:clamp(22px,5vw,42px);
+    box-shadow:0 18px 45px #9b496712;position:relative;overflow:hidden;
+  }
+  .letter:after{content:"♡";position:absolute;right:17px;top:2px;font-size:75px;color:#ffe2eb;transform:rotate(13deg);pointer-events:none}
+  .letter-content{position:relative;z-index:1}
+  .letter .hello{font-size:1.35rem;font-weight:900;color:var(--deep)}
+  .letter p{line-height:1.9;color:#745565;margin:16px 0}
+  .signature{font-weight:800;color:var(--deep);margin-top:24px}
+  .question-card{
+    max-width:700px;margin:auto;text-align:center;background:linear-gradient(145deg,#fff7fa,#fffdf7);
+    border:2px solid #f2cfda;border-radius:30px;padding:clamp(25px,6vw,48px);
+    box-shadow:0 20px 60px #9b496714;
+  }
+  .big-heart{font-size:3rem;display:inline-block;animation:heartbeat 1.7s ease-in-out infinite}
+  @keyframes heartbeat{0%,100%{transform:scale(1)}15%{transform:scale(1.12)}30%{transform:scale(1)}}
+  .question-card p{color:var(--muted);line-height:1.85;max-width:520px;margin:12px auto}
+  .reply-panel{display:none;text-align:left;margin:24px auto 0;max-width:540px;padding:18px;background:#fff;border:1px solid var(--line);border-radius:18px;line-height:1.8;color:#79586a}
+  .reply-panel.show{display:block;animation:pop .35s ease}
+  @keyframes pop{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+  .footer{text-align:center;padding:25px 0 55px;color:#a1828e;font-size:.82rem;line-height:1.7}
+  .sparkle{display:inline-block;animation:twinkle 1.6s ease-in-out infinite}
+  @keyframes twinkle{50%{transform:rotate(18deg) scale(1.2)}}
+  .hidden{display:none!important}
+  @media(max-width:520px){
+    .music-toggle{top:9px;right:9px;padding:9px 11px;font-size:.78rem}
+    .hero{padding-top:68px}
+    .hero-card{border-radius:25px}
+    .memory{grid-template-columns:44px 1fr;padding:16px;gap:12px}
+    .memory-icon{width:44px;height:44px;border-radius:14px;font-size:1.4rem}
+    .btn{width:100%}
+    .btn-row{gap:13px}
+    section.story-section{padding:52px 0}
+  }
+  @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div class="floating" id="floating" aria-hidden="true"></div>
+
+<button class="music-toggle" id="musicBtn" type="button" aria-label="Putar atau jeda musik">♫ Musik: OFF</button>
+<!-- Letakkan kedua file MP3 ini di folder yang sama dengan index.html. -->
+<audio id="bgMusic" src="wish-you-were-here.mp3" preload="metadata"></audio>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-card">
+      <span class="eyebrow">✿ a tiny corner of the internet ✿</span>
+      <h1>hai, <span class="script">Neeeemoooww</span><br>bestiyyyy ♡</h1>
+      <p>aku punya sesuatu yang pengen aku ceritain ke kamu. tenang, bukan tugas kelompok kok WKWKWK 😭</p>
+      <div class="envelope-stage">
+        <button class="envelope" id="envelope" type="button" aria-label="Buka amplop">
+          <span class="env-body"></span><span class="env-flap"></span><span class="env-front"></span><span class="seal">💌</span>
+        </button>
+      </div>
+      <button class="btn btn-primary" id="openBtn" type="button">buka suratnyaa <span class="sparkle">✨</span></button>
+      <div class="tiny">dibuat khusus buat seseorang yang spesial 🤍</div>
+      <div class="music-note">psst… musiknya bisa dinyalain lewat tombol di pojok kanan atas 🎧</div>
+    </div>
+  </div>
+</header>
+
+<main id="mainContent" class="hidden">
+  <section class="story-section">
+    <div class="wrap">
+      <div class="section-heading">
+        <div class="mini">chapter 01 · little memories</div>
+        <h2>our little story <span class="sparkle">🧸</span></h2>
+        <p>kalau dipikir-pikir, perjalanan kita lumayan panjang juga yaa. dari yang awalnya sahabatan, sampai akhirnya jadi cerita yang nggak sesimpel itu.</p>
+      </div>
+      <div class="timeline">
+        <article class="memory">
+          <div class="memory-icon">👭</div>
+          <div><span class="tag">the beginning</span><h3>berawal dari sahabatan</h3><p>dulu kita bisa ngobrol, bercanda, dan jadi diri sendiri tanpa harus mikirin semuanya terlalu jauh. aku nggak nyangka kalau seseorang yang awalnya jadi sahabat bisa punya tempat yang beda di hati aku.</p></div>
+        </article>
+        <article class="memory">
+          <div class="memory-icon">🎞️</div>
+          <div><span class="tag">the memories</span><h3>hal-hal kecil yang masih aku inget</h3><p>kadang yang paling nempel justru bukan momen besar, tapi obrolan random, candaan receh, perhatian kecil, dan hal sederhana yang mungkin kelihatannya biasa aja—tapi jadi berarti karena itu sama kamu.</p></div>
+        </article>
+        <article class="memory">
+          <div class="memory-icon">🌧️</div>
+          <div><span class="tag">the distance</span><h3>sempat berubah, sempat jauh</h3><p>aku tahu perjalanan kita nggak selalu gampang. ada hal-hal yang berubah, ada bagian yang mungkin bikin kita sama-sama ngerasa kehilangan kedekatan yang dulu. aku nggak mau pura-pura kalau semuanya selalu baik-baik aja.</p></div>
+        </article>
+        <article class="memory">
+          <div class="memory-icon">🌱</div>
+          <div><span class="tag">a new little chapter</span><h3>terus, kita dekat lagi</h3><p>dan sekarang kita bisa ngobrol dan dekat lagi. buat aku, itu sesuatu yang aku syukuri. aku nggak menganggapnya sebagai hal yang sepele, karena aku tahu kedekatan itu berharga.</p></div>
+        </article>
+      </div>
+      <div class="note">♡ aku nggak bikin ini buat mengungkit semuanya atau bikin kamu merasa punya utang perasaan. aku cuma pengen jujur kalau cerita kita punya arti buat aku. ♡</div>
+    </div>
+  </section>
+
+  <section class="story-section">
+    <div class="wrap">
+      <div class="section-heading">
+        <div class="mini">chapter 02 · something honest</div>
+        <h2>ada yang pengen aku bilang… 💌</h2>
+        <p>oke, bagian ini agak bikin salting. bayangin aku lagi ngetik sambil mikir “duh, ngomongnya gimana ya” WKWKWK.</p>
+      </div>
+      <div class="letter-wrap">
+        <div class="letter">
+          <div class="letter-content">
+            <div class="hello">Neeeemoooww bestiyyyy,</div>
+            <p>jujur, aku seneng kita bisa dekat lagi kayak sekarang. aku nyaman sama kamu, dan makin ke sini aku sadar kalau perasaan aku ke kamu bukan sekadar perasaan seorang sahabat biasa.</p>
+            <p>aku masih menghargai semua yang pernah kita lewatin. aku juga tahu masa lalu kita nggak sempurna, dan aku nggak berharap kita bisa langsung melupakan semuanya atau tiba-tiba jadi pasangan yang sempurna.</p>
+            <p>aku cuma pengen kali ini kita bisa lebih jujur tentang apa yang kita rasain. aku pengen tahu apakah kamu juga pernah kepikiran buat membawa hubungan kita ke arah yang lebih serius, atau kamu lebih nyaman kalau kita tetap seperti sekarang.</p>
+            <p>aku nggak minta kamu menjawab sesuai yang aku mau. perasaan kamu tetap penting, dan kamu berhak punya waktu buat memahami semuanya. aku cuma nggak mau terus menebak-nebak sendirian tanpa pernah ngobrol jujur sama kamu.</p>
+            <p>apa pun yang kamu rasain, makasih ya udah jadi bagian dari cerita aku. aku seneng kita bisa dekat lagi, dan aku berharap kita bisa ngobrolin ini dengan tenang, tanpa harus saling merasa terpaksa. 🤍</p>
+            <div class="signature">— dari aku, yang lagi berusaha berani ngomong jujur 🐻</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="story-section">
+    <div class="wrap">
+      <div class="question-card">
+        <div class="big-heart">💗</div>
+        <div class="section-heading" style="margin-bottom:12px">
+          <div class="mini">chapter 03 · no pressure, okay?</div>
+          <h2>jadi… kita ngobrol, yuk?</h2>
+        </div>
+        <p>aku pengen tahu apa yang kamu rasain juga. kalau kamu mau, kita bisa ngobrol tentang hubungan kita dan apakah kita sama-sama pengen mencoba sesuatu yang lebih jelas.</p>
+        <p>nggak harus jawab sekarang, nggak harus langsung punya semua jawabannya. aku pengen kita sama-sama nyaman dan jujur. 🫶</p>
+        <div class="btn-row">
+          <button class="btn btn-primary" id="talkBtn" type="button">yuk, kita ngobrol ♡</button>
+          <button class="btn btn-soft" id="timeBtn" type="button">aku butuh waktu dulu 🌷</button>
+        </div>
+        <div class="reply-panel" id="talkPanel" role="status">
+          <strong>hehe, makasih udah mau ngobrol 🤍</strong><br>
+          kita bisa mulai pelan-pelan. nggak perlu langsung menentukan semuanya; yang penting kita saling jujur dan dengerin satu sama lain. nanti ngobrolnya pas kita berdua sama-sama nyaman, yaa.
+        </div>
+        <div class="reply-panel" id="timePanel" role="status">
+          <strong>nggak apa-apa, take your time 🌷</strong><br>
+          kamu nggak perlu buru-buru membalas atau mengambil keputusan. makasih udah membaca sampai sini. semoga kita tetap bisa saling menghargai dan menjaga komunikasi dengan baik.
+        </div>
+        <div class="tiny">pilihan ini cuma menampilkan pesan di halaman ini—nggak mengirim jawaban ke mana pun.</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer wrap">
+  dibuat dengan sedikit keberanian, banyak pikiran, dan mungkin terlalu banyak “WKWKWK” ♡<br>
+  <span>for Neeeemoooww bestiyyyy · take it one little step at a time</span>
+</footer>
+
+<script>
+  const floating = document.getElementById('floating');
+  const floatEmojis = ['♡','✦','♥','✿','⋆'];
+  for(let i=0;i<18;i++){
+    const el=document.createElement('span');
+    el.className='floaty';
+    el.textContent=floatEmojis[i%floatEmojis.length];
+    el.style.left=(Math.random()*100)+'%';
+    el.style.animationDuration=(12+Math.random()*14)+'s';
+    el.style.animationDelay=(-Math.random()*22)+'s';
+    el.style.fontSize=(14+Math.random()*19)+'px';
+    floating.appendChild(el);
+  }
+
+  const envelope=document.getElementById('envelope');
+  const openBtn=document.getElementById('openBtn');
+  const mainContent=document.getElementById('mainContent');
+  let opened=false;
+  function openLetter(){
+    if(opened)return;
+    opened=true;
+    envelope.classList.add('open');
+    openBtn.textContent='suratnya kebuka! ↓';
+
+    // Membuka amplop adalah interaksi pengguna, jadi coba mulai lagu pertama di sini.
+    startMusic();
+
+    setTimeout(()=>{
+      mainContent.classList.remove('hidden');
+      mainContent.querySelectorAll('.memory').forEach((el,i)=>setTimeout(()=>el.classList.add('visible'),i*130));
+      document.getElementById('mainContent').scrollIntoView({behavior:'smooth',block:'start'});
+    },550);
+  }
+  envelope.addEventListener('click',openLetter);
+  openBtn.addEventListener('click',openLetter);
+
+  const music=document.getElementById('bgMusic');
+  const musicBtn=document.getElementById('musicBtn');
+  const musicTracks=[
+    {src:'Wish You Were Here.mp3', name:'Wish You Were Here'},
+    {src:'Take a Chance With Me.mp3', name:'Take A Chance With Me'}
+  ];
+  let currentTrack=0;
+  let musicOn=false;
+
+  function setMusicButton(){
+    musicBtn.textContent=musicOn ? '♫ Musik: ON' : '♫ Musik: OFF';
+    musicBtn.setAttribute('aria-label',musicOn ? 'Jeda musik' : 'Putar musik');
+  }
+
+  async function startMusic(){
+    try{
+      // Set sumber lagu sesuai urutan playlist.
+      if(!music.getAttribute('src') && !music.querySelector('source')){
+        music.src=musicTracks[currentTrack].src;
+      }
+      await music.play();
+      musicOn=true;
+      setMusicButton();
+    }catch(e){
+      musicOn=false;
+      setMusicButton();
+      musicBtn.title='Pastikan kedua file MP3 ada di folder yang sama dengan index.html.';
+    }
+  }
+
+  // Saat lagu pertama selesai, lanjut otomatis ke lagu kedua.
+  music.addEventListener('ended',async()=>{
+    if(currentTrack < musicTracks.length-1){
+      currentTrack++;
+      music.src=musicTracks[currentTrack].src;
+      music.load();
+      await startMusic();
+    }else{
+      currentTrack=musicTracks.length;
+      musicOn=false;
+      setMusicButton();
+    }
+  });
+
+  musicBtn.addEventListener('click',async()=>{
+    if(musicOn){
+      music.pause();
+      musicOn=false;
+      setMusicButton();
+    }else{
+      // Kalau playlist sudah selesai, tombol mulai lagi dari lagu pertama.
+      if(currentTrack >= musicTracks.length){
+        currentTrack=0;
+        music.src=musicTracks[currentTrack].src;
+      }
+      await startMusic();
+    }
+  });
+
+  const talkPanel=document.getElementById('talkPanel');
+  const timePanel=document.getElementById('timePanel');
+  document.getElementById('talkBtn').addEventListener('click',()=>{
+    talkPanel.classList.add('show');timePanel.classList.remove('show');
+    talkPanel.scrollIntoView({behavior:'smooth',block:'nearest'});
+  });
+  document.getElementById('timeBtn').addEventListener('click',()=>{
+    timePanel.classList.add('show');talkPanel.classList.remove('show');
+    timePanel.scrollIntoView({behavior:'smooth',block:'nearest'});
+  });
+</script>
+</body>
+</html>
